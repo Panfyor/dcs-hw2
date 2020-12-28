@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+  gauss_maker:
+    build: gauss_maker/
+    command: python -m make
+    volumes:
+      - ./data:/data
+
+  gauss_read:
+    build: gauss_read/
+    command: python -m read
+    volumes:
+      - ./data:/data
+    depends_on:
+      - gauss_maker
